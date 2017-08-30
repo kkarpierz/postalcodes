@@ -42,7 +42,7 @@
             this.FirstNumber.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.FirstNumber.Location = new System.Drawing.Point(38, 44);
             this.FirstNumber.Name = "FirstNumber";
-            this.FirstNumber.Size = new System.Drawing.Size(139, 159);
+            this.FirstNumber.Size = new System.Drawing.Size(115, 158);
             this.FirstNumber.TabIndex = 0;
             // 
             // SecondNumber
@@ -50,7 +50,7 @@
             this.SecondNumber.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.SecondNumber.Location = new System.Drawing.Point(211, 44);
             this.SecondNumber.Name = "SecondNumber";
-            this.SecondNumber.Size = new System.Drawing.Size(139, 159);
+            this.SecondNumber.Size = new System.Drawing.Size(115, 158);
             this.SecondNumber.TabIndex = 1;
             // 
             // ThirdNumber
@@ -58,7 +58,7 @@
             this.ThirdNumber.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ThirdNumber.Location = new System.Drawing.Point(449, 44);
             this.ThirdNumber.Name = "ThirdNumber";
-            this.ThirdNumber.Size = new System.Drawing.Size(139, 159);
+            this.ThirdNumber.Size = new System.Drawing.Size(115, 158);
             this.ThirdNumber.TabIndex = 2;
             // 
             // FourthNumber
@@ -66,7 +66,7 @@
             this.FourthNumber.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.FourthNumber.Location = new System.Drawing.Point(616, 44);
             this.FourthNumber.Name = "FourthNumber";
-            this.FourthNumber.Size = new System.Drawing.Size(139, 159);
+            this.FourthNumber.Size = new System.Drawing.Size(115, 158);
             this.FourthNumber.TabIndex = 3;
             // 
             // FifthNumber
@@ -74,7 +74,7 @@
             this.FifthNumber.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.FifthNumber.Location = new System.Drawing.Point(783, 44);
             this.FifthNumber.Name = "FifthNumber";
-            this.FifthNumber.Size = new System.Drawing.Size(139, 159);
+            this.FifthNumber.Size = new System.Drawing.Size(115, 158);
             this.FifthNumber.TabIndex = 4;
             // 
             // label1

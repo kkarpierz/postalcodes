@@ -33,11 +33,14 @@ namespace postalCode {
 
             for (int j = 0; j < grids.Count; j++) {
                 grids[j].DataSource = numbers[j].DtOfNumber;
-                for (int i = 0; i < 6; i++) {
+                for (int i = 0; i < 5; i++) {
                     grids[j].Columns[i].Width = 22;
                     grids[j].Columns[i].Resizable = DataGridViewTriState.False;
-                    grids[j].Rows[i].Resizable = DataGridViewTriState.False;
                 }
+                for (int l = 0; l < 7; l++) {
+                    grids[j].Rows[l].Resizable = DataGridViewTriState.False;
+                }
+                grids[j].Rows.RemoveAt(6);
                 grids[j].ColumnHeadersVisible = false;
                 grids[j].RowHeadersVisible = false;
             }
@@ -59,17 +62,18 @@ namespace postalCode {
 
             for (int k = 0; k < grids.Count; k++) {
 
-                for (int i = 0; i < 6; i++) {
-                    for (int j = 0; j < 6; j++) {
+                for (int i = 0; i < 7; i++) {
+                    for (int j = 0; j < 5; j++) {
                         if (grids[k].Rows[i].Cells[j].Selected)
                             MatrixOfNumbers[k].Rows[i][j] = 1;
+
                         else
                             MatrixOfNumbers[k].Rows[i][j] = 0;
 
                     }
                 }
 
-            }
+            } 
 
             int ij = 0;
 

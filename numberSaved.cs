@@ -23,12 +23,11 @@ namespace postalCode {
             dtOfNumber.Columns.Add("C");
             dtOfNumber.Columns.Add("D");
             dtOfNumber.Columns.Add("E");
-            dtOfNumber.Columns.Add("F");
 
-            for (int i = 0; i < 6; i++) {
+            for (int i = 0; i < 7; i++) {
                 dtOfNumber.Rows.Add();
             }
-
+            int f = 0;
 
         }
 

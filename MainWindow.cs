@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using postalCode;
+using CSharp_Neural_Network;
+using System.Diagnostics;
 
 namespace postalCode {
     public partial class MainWindow : Form {
@@ -44,6 +46,12 @@ namespace postalCode {
                 grids[j].ColumnHeadersVisible = false;
                 grids[j].RowHeadersVisible = false;
             }
+
+            LogicGates.Train();
+            //Mnist.Train(18900, 0.0015);
+            Debug.WriteLine("Linijka w debugu :-)");
+            Console.WriteLine("Everything done.  Press any key to stop.");
+            Console.ReadLine();
 
         }
 

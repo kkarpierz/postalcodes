@@ -18,10 +18,10 @@ namespace CSharp_Neural_Network
             //new Trainer(new Network(1, new int[0], 1, learnRate), notCases, CheckCorrect)
             //    .TrainUntilDone();
 
-            Console.WriteLine("Training Or:");
-            Console.WriteLine("============");
-            new Trainer(Create21Network(), orCases, CheckCorrect)
-                .TrainUntilDone();
+            //Console.WriteLine("Training Or:");
+            //Console.WriteLine("============");
+            //new Trainer(Create21Network(), orCases, CheckCorrect)
+            //    .TrainUntilDone();
 
             Console.WriteLine("Training numbers:");
             Console.WriteLine("==============");

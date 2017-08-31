@@ -68,6 +68,15 @@ namespace CSharp_Neural_Network
             return outputLayer.Values;
         }
 
+        public int RecognizeNumberFromVector(double[] input) {
+
+            double[] feedForwardResult = FeedForward(input);
+
+
+
+            return 0;
+        }
+
         public void PropagateBack(double[] target)
         {
             outputLayer.SetTargetValues(target);

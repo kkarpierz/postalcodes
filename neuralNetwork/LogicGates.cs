@@ -84,7 +84,8 @@ namespace CSharp_Neural_Network
 
         static Network Create35to10Network()
         {
-            return new Network(35, new int[0], 10, 0.5);
+            int[] i = {4};
+            return new Network(35, i, 10, 0.5);
         }
 
         static bool CheckCorrect(double[] target, double[] output)

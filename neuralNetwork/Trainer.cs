@@ -57,6 +57,40 @@ namespace CSharp_Neural_Network
             CurrentSampleCount = 0;
         }
 
+        public void Train(int numOfEpochs)
+        {
+            var start = DateTime.UtcNow;
+            Wr("Got {0:n0} training cases and {1:n0} test cases", caseCount, testCases.Length);
+            var trainingAccuracy = MeasureAccuracy(cases);
+            var testAccuracy = MeasureAccuracy(testCases);
+            WriteAccuracy(trainingAccuracy, "Training");
+            WriteAccuracy(testAccuracy, "    Test");
+            Wr("Starting first epoch...");
+            Wr("================================");
+            for (int i = 0; i < numOfEpochs; i++ )
+            {
+                var epochStart = DateTime.UtcNow;
+                ShuffleCases();
+                var trainingStart = DateTime.UtcNow;
+                TrainAllCases();
+                var trainingEnd = DateTime.UtcNow;
+                trainingAccuracy = MeasureAccuracy(cases);
+                if (i == numOfEpochs-1)
+                {
+                    Wr("Epoch {0} complete:", EpochCount);
+                    testAccuracy = MeasureAccuracy(testCases);
+                    WriteAccuracy(trainingAccuracy, "Training");
+                    WriteAccuracy(testAccuracy, "    Test");
+                    Wr("Training time: {0:mm\\:ss}", (trainingEnd - trainingStart));
+                    Wr("   Epoch time: {0:mm\\:ss}", (DateTime.UtcNow - epochStart));
+                    Wr("     Run time: {0:mm\\:ss}", (DateTime.UtcNow - start));
+                    Wr("================================");
+                }
+            }
+            Wr("All done.");
+            Wr("");
+        }
+
         public void TrainUntilDone(bool showEpochStats = false)
         {
             var start = DateTime.UtcNow;

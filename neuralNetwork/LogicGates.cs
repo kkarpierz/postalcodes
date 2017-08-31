@@ -28,7 +28,8 @@ namespace CSharp_Neural_Network
             Console.WriteLine("==============");
             numberNetwork = Create35to10Network();
 
-            new Trainer(numberNetwork, numCases2, CheckCorrect, testNums).TrainUntilDone();
+            //new Trainer(numberNetwork, numCases2, CheckCorrect, testNums).TrainUntilDone();
+            new Trainer(numberNetwork, numCases2, CheckCorrect, testNums).Train(300);
 
 
 

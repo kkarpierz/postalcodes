@@ -48,6 +48,7 @@ namespace postalCode {
             }
 
             LogicGates.Train();
+            LogicGates.Recognize();
             //Mnist.Train(18900, 0.0015);
             Debug.WriteLine("Linijka w debugu :-)");
             Console.WriteLine("Everything done.  Press any key to stop.");
@@ -81,7 +82,25 @@ namespace postalCode {
                     }
                 }
 
-            } 
+            }
+
+            double[] NumberFromDt = new double[35];
+            List<double[]> listOfNumbersFromDt = new List<double[]>();
+
+            for (int k = 0; k < MatrixOfNumbers.Count; k++) {
+                for (int i = 0; i < MatrixOfNumbers[k].Rows.Count; i++) {
+                    for (int j = 0; j < MatrixOfNumbers[k].Columns.Count; j++) {
+                        NumberFromDt[(5 * i) + j] = Convert.ToDouble(MatrixOfNumbers[k].Rows[i][j]);
+                    }
+                }
+                listOfNumbersFromDt.Add(NumberFromDt);
+                NumberFromDt = new double[35];
+            }
+
+            for (int i = 0; i < listOfNumbersFromDt.Count; i++) {
+                LogicGates.Recognize(listOfNumbersFromDt[i]);
+            }
+            
 
             int ij = 0;
 

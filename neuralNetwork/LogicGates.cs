@@ -32,7 +32,10 @@ namespace CSharp_Neural_Network
             for (int i = 0; i < output.Length; i++) {
                 Console.WriteLine(output[i]);
             }
-            
+
+            int numberRecognized = numberNetwork.RecognizeNumberFromVector(myZero);
+            Console.WriteLine("Recognized num: " + numberRecognized.ToString());
+
 
             //Console.WriteLine("Training And:");
             //Console.WriteLine("=============");

@@ -72,9 +72,13 @@ namespace CSharp_Neural_Network
 
             double[] feedForwardResult = FeedForward(input);
 
+            for (int i = 0; i < feedForwardResult.Length; i++) {
+                if (feedForwardResult[i] > 0.7) {
+                    return i;
+                }
+            }
 
-
-            return 0;
+            return -1; //wrong value
         }
 
         public void PropagateBack(double[] target)

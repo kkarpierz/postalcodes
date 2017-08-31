@@ -8,6 +8,7 @@ namespace CSharp_Neural_Network
 {
     public class LogicGates
     {
+        static Network numberNetwork;
 
         public static void Train()
         {
@@ -25,16 +26,10 @@ namespace CSharp_Neural_Network
 
             Console.WriteLine("Training numbers:");
             Console.WriteLine("==============");
-            Network numberNetwork = Create35to10Network();
-            new Trainer(numberNetwork, numCases2, CheckCorrect, testNums).TrainUntilDone();
-            double[] myZero= new double[]{ 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1 };
-            double[] output = numberNetwork.FeedForward(myZero);
-            for (int i = 0; i < output.Length; i++) {
-                Console.WriteLine(output[i]);
-            }
+            numberNetwork = Create35to10Network();
 
-            int numberRecognized = numberNetwork.RecognizeNumberFromVector(myZero);
-            Console.WriteLine("Recognized num: " + numberRecognized.ToString());
+            new Trainer(numberNetwork, numCases2, CheckCorrect, testNums).TrainUntilDone();
+
 
 
             //Console.WriteLine("Training And:");
@@ -51,6 +46,21 @@ namespace CSharp_Neural_Network
             //Console.WriteLine("=============");
             //new Trainer(new Network(2, new []{2} , 1, learnRate), xorCases, CheckCorrect)
             //    .TrainUntilDone();
+        }
+
+        public static void Recognize(double[] inputVector = null) {
+            double[] myNumberToTest = new double[] { 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1 };
+            if (inputVector != null) {
+                myNumberToTest = inputVector;
+            }
+
+            double[] output = numberNetwork.FeedForward(myNumberToTest);
+            for (int i = 0; i < output.Length; i++) {
+                Console.WriteLine(output[i]);
+            }
+
+            int numberRecognized = numberNetwork.RecognizeNumberFromVector(myNumberToTest);
+            Console.WriteLine(" ====   Recognized num: " + numberRecognized.ToString());
         }
 
         static void HL() { Console.WriteLine(new string('=', 0)); }
@@ -115,21 +125,26 @@ namespace CSharp_Neural_Network
                 Sample.Create("0 1 1 1 1 0 1 0 0 1 0 1 0 0 1 0 1 0 0 1 0 1 0 0 1 0 1 0 0 1 0 1 1 1 1", "1 0 0 0 0 0 0 0 0 0"),
                 Sample.Create("1 1 1 1 0 1 0 0 1 0 1 0 0 1 0 1 0 0 1 0 1 0 0 1 0 1 0 0 1 0 1 1 1 1 0", "1 0 0 0 0 0 0 0 0 0"),
                 Sample.Create("1 1 1 1 1 1 0 0 0 1 1 0 0 0 1 1 0 0 0 1 1 0 0 0 1 1 0 0 0 1 1 1 1 1 1", "1 0 0 0 0 0 0 0 0 0"),
+                Sample.Create("1 1 1 1 1 1 0 0 0 1 1 0 0 0 1 1 0 0 0 1 1 0 0 0 1 1 0 0 0 1 1 1 1 1 1", "1 0 0 0 0 0 0 0 0 0"),
                 Sample.Create("0 0 1 0 0 0 1 1 0 0 1 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 1 1 0", "0 1 0 0 0 0 0 0 0 0"),
                 Sample.Create("0 0 1 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 1 1 0", "0 1 0 0 0 0 0 0 0 0"),
                 Sample.Create("0 0 0 0 1 0 0 0 1 1 0 0 1 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1", "0 1 0 0 0 0 0 0 0 0"),
                 Sample.Create("0 0 0 0 0 0 0 1 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 1 1 0", "0 1 0 0 0 0 0 0 0 0"),
+                Sample.Create("0 0 1 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0", "0 1 0 0 0 0 0 0 0 0"),
                 Sample.Create("0 0 1 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0", "0 1 0 0 0 0 0 0 0 0"),
                 Sample.Create("0 0 1 1 0 0 1 0 0 1 0 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 0 1 1 1 1", "0 0 1 0 0 0 0 0 0 0"),
                 Sample.Create("0 1 1 0 0 1 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 1 1 1 0", "0 0 1 0 0 0 0 0 0 0"),
                 Sample.Create("0 0 1 1 0 0 1 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 1 1 1", "0 0 1 0 0 0 0 0 0 0"),
                 Sample.Create("0 1 1 1 0 1 0 0 1 0 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 1 0 1 1 1 1 0", "0 0 1 0 0 0 0 0 0 0"),
                 Sample.Create("0 1 1 1 0 1 0 0 0 1 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 1 1 1 1 1 1", "0 0 1 0 0 0 0 0 0 0"),
+                Sample.Create("0 1 1 1 0 1 0 0 0 1 0 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 1 1 1 1", "0 0 1 0 0 0 0 0 0 0"),
+                Sample.Create("1 1 1 1 1 0 0 0 0 1 0 0 0 0 1 1 1 1 1 1 0 0 0 0 1 0 0 0 0 1 1 1 1 1 1", "0 0 0 1 0 0 0 0 0 0"),
                 Sample.Create("0 0 1 1 0 0 1 0 0 1 0 0 0 0 1 0 0 0 1 0 0 0 0 0 1 0 1 0 0 1 0 0 1 1 0", "0 0 0 1 0 0 0 0 0 0"),
                 Sample.Create("0 1 1 0 0 1 0 0 1 0 0 0 0 1 0 0 0 1 0 0 0 0 0 1 0 1 0 0 1 0 0 1 1 0 0", "0 0 0 1 0 0 0 0 0 0"),
                 Sample.Create("0 0 1 1 0 0 1 0 0 1 0 0 0 0 1 0 0 0 1 0 0 0 0 0 1 0 1 0 0 1 0 0 1 1 0", "0 0 0 1 0 0 0 0 0 0"),
                 Sample.Create("0 1 1 1 0 0 0 0 0 1 0 0 0 0 1 0 0 1 1 0 0 0 0 0 1 0 1 0 0 1 0 0 1 1 0", "0 0 0 1 0 0 0 0 0 0"),
                 Sample.Create("0 1 1 1 0 1 0 0 0 1 0 0 0 0 1 0 0 1 1 0 0 0 0 0 1 1 0 0 0 1 0 1 1 1 0", "0 0 0 1 0 0 0 0 0 0"),
+                Sample.Create("1 0 0 0 1 1 0 0 0 1 1 0 0 0 1 1 1 1 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1", "0 0 0 0 1 0 0 0 0 0"),
                 Sample.Create("0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 1 1 1 1 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0", "0 0 0 0 1 0 0 0 0 0"),
                 Sample.Create("0 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 1 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1", "0 0 0 0 1 0 0 0 0 0"),
                 Sample.Create("0 0 0 1 0 0 0 1 0 0 0 1 0 1 0 1 1 1 1 1 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0", "0 0 0 0 1 0 0 0 0 0"),
@@ -140,26 +155,31 @@ namespace CSharp_Neural_Network
                 Sample.Create("0 1 1 1 1 0 1 0 0 0 0 1 0 0 0 0 1 1 1 0 0 0 0 0 1 0 0 0 0 1 0 1 1 1 1", "0 0 0 0 0 1 0 0 0 0"),
                 Sample.Create("1 1 1 1 0 1 0 0 0 0 1 0 0 0 0 1 1 1 1 0 0 0 0 1 0 0 0 0 1 0 1 1 1 1 0", "0 0 0 0 0 1 0 0 0 0"),
                 Sample.Create("0 1 1 1 1 0 1 0 0 0 0 1 0 0 0 0 1 1 1 1 0 0 0 0 1 0 0 0 0 1 0 1 1 1 1", "0 0 0 0 0 1 0 0 0 0"),
+                Sample.Create("1 1 1 1 1 1 0 0 0 0 1 0 0 0 0 1 1 1 1 1 0 0 0 0 1 0 0 0 0 1 1 1 1 1 1", "0 0 0 0 0 1 0 0 0 0"),
                 Sample.Create("0 1 1 1 0 1 0 0 0 0 1 0 0 0 0 1 1 1 0 0 1 0 0 1 0 1 0 0 1 0 0 1 1 0 0", "0 0 0 0 0 0 1 0 0 0"),
                 Sample.Create("0 1 1 0 0 1 0 0 1 0 1 0 0 0 0 1 1 1 0 0 1 0 0 1 0 1 0 0 1 0 0 1 1 0 0", "0 0 0 0 0 0 1 0 0 0"),
                 Sample.Create("0 1 1 1 0 1 0 0 0 1 1 0 0 0 0 1 1 1 1 0 1 0 0 0 1 1 0 0 0 1 0 1 1 1 0", "0 0 0 0 0 0 1 0 0 0"),
                 Sample.Create("0 0 1 1 1 0 1 0 0 0 0 1 0 0 0 0 1 1 1 0 0 1 0 0 1 0 1 0 0 1 0 0 1 1 0", "0 0 0 0 0 0 1 0 0 0"),
                 Sample.Create("0 1 1 1 0 1 0 0 0 0 1 0 0 0 0 1 1 1 0 0 1 0 0 1 0 1 0 0 1 0 1 1 1 1 0", "0 0 0 0 0 0 1 0 0 0"),
+                Sample.Create("1 1 1 1 1 1 0 0 0 0 1 0 0 0 0 1 1 1 1 1 1 0 0 0 1 1 0 0 0 1 1 1 1 1 1", "0 0 0 0 0 0 1 0 0 0"),
                 Sample.Create("1 1 1 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 0", "0 0 0 0 0 0 0 1 0 0"),
                 Sample.Create("0 1 1 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0 0 0 0 1 0 0 0 1 0 0 0 0 1 0 0", "0 0 0 0 0 0 0 1 0 0"),
                 Sample.Create("0 1 1 1 1 0 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 0 1 0 0 0 1 0 0 0 0 1 0 0 0", "0 0 0 0 0 0 0 1 0 0"),
                 Sample.Create("1 1 1 1 1 0 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 0", "0 0 0 0 0 0 0 1 0 0"),
                 Sample.Create("1 1 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0 0 0 0 1 0 0 0 1 0 0 0 0 1 0 0 0", "0 0 0 0 0 0 0 1 0 0"),
+                Sample.Create("1 1 1 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 0", "0 0 0 0 0 0 0 1 0 0"),
                 Sample.Create("0 1 1 0 0 1 0 0 1 0 1 0 0 1 0 0 1 1 0 0 1 0 0 1 0 1 0 0 1 0 0 1 1 0 0", "0 0 0 0 0 0 0 0 1 0"),
                 Sample.Create("0 0 1 1 0 0 1 0 0 1 0 1 0 0 1 0 0 1 1 0 0 1 0 0 1 0 1 0 0 1 0 0 1 1 0", "0 0 0 0 0 0 0 0 1 0"),
                 Sample.Create("0 1 1 1 0 1 0 0 0 1 1 0 0 0 1 0 1 1 1 0 1 0 0 0 1 1 0 0 0 1 0 1 1 1 0", "0 0 0 0 0 0 0 0 1 0"),
                 Sample.Create("0 1 1 1 0 1 0 0 0 1 1 0 0 0 1 0 1 1 1 0 1 0 0 0 1 1 0 0 0 1 1 1 1 1 1", "0 0 0 0 0 0 0 0 1 0"),
                 Sample.Create("0 1 1 1 1 0 1 0 0 1 0 1 0 0 1 0 1 1 1 1 0 1 0 0 1 0 1 0 0 1 0 1 1 1 1", "0 0 0 0 0 0 0 0 1 0"),
+                Sample.Create("1 1 1 1 1 1 0 0 0 1 1 0 0 0 1 1 1 1 1 1 1 0 0 0 1 1 0 0 0 1 1 1 1 1 1", "0 0 0 0 0 0 0 0 1 0"),
                 Sample.Create("0 1 1 0 0 1 0 0 1 0 1 0 0 1 0 0 1 1 1 0 0 0 0 1 0 1 0 0 1 0 0 1 1 0 0", "0 0 0 0 0 0 0 0 0 1"),
                 Sample.Create("0 0 1 1 0 0 1 0 0 1 0 1 0 0 1 0 0 1 1 1 0 0 0 0 1 0 1 0 0 1 0 0 1 1 0", "0 0 0 0 0 0 0 0 0 1"),
                 Sample.Create("0 1 1 1 0 0 1 0 0 1 0 1 0 0 1 0 1 1 1 1 0 0 0 0 1 0 0 0 0 1 0 1 1 1 0", "0 0 0 0 0 0 0 0 0 1"),
                 Sample.Create("0 1 1 1 0 1 0 0 1 0 1 0 0 1 0 0 1 1 1 0 0 0 0 1 0 1 0 0 1 0 0 1 1 1 0", "0 0 0 0 0 0 0 0 0 1"),
-                Sample.Create("0 1 1 1 0 1 0 0 0 1 1 0 0 0 1 0 1 1 1 1 0 0 0 0 1 0 0 0 0 1 0 1 1 1 1", "0 0 0 0 0 0 0 0 0 1")
+                Sample.Create("0 1 1 1 0 1 0 0 0 1 1 0 0 0 1 0 1 1 1 1 0 0 0 0 1 0 0 0 0 1 0 1 1 1 1", "0 0 0 0 0 0 0 0 0 1"),
+                Sample.Create("1 1 1 1 1 1 0 0 0 1 1 0 0 0 1 1 1 1 1 1 0 0 0 0 1 0 0 0 0 1 1 1 1 1 1", "0 0 0 0 0 0 0 0 0 1")
         };
 
         static Sample[] testNums = new[] {

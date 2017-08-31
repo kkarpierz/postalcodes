@@ -19,13 +19,6 @@ namespace postalCode {
         public MainWindow() {
             InitializeComponent();
 
-            //test save to binary
-            //String testText = "Testowy tekst..";
-            //FileManager.WriteToBinaryFile("testowyBinarny",testText);
-            //test load binary file
-            //String s = FileManager.ReadFromBinaryFile<String>("testowyBinarny");
-            //Console.WriteLine("Odczytany plik binarny: " + s);
-
             List<NumberSaved> numbers = new List<NumberSaved>();
 
             for (int i = 0; i < 5; i++) {

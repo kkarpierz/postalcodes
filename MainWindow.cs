@@ -97,7 +97,10 @@ namespace postalCode {
                 NumberFromDt = new double[35];
             }
 
-            LogicGates.Recognize(listOfNumbersFromDt[0]);
+            for (int i = 0; i < listOfNumbersFromDt.Count; i++) {
+                LogicGates.Recognize(listOfNumbersFromDt[i]);
+            }
+            
 
             int ij = 0;
 

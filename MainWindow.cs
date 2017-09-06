@@ -48,7 +48,7 @@ namespace postalCode {
             }
 
             LogicGates.Train();
-            LogicGates.Recognize();
+            //LogicGates.Recognize();
             //Mnist.Train(18900, 0.0015);
             Debug.WriteLine("Linijka w debugu :-)");
             Console.WriteLine("Everything done.  Press any key to stop.");
@@ -100,7 +100,23 @@ namespace postalCode {
             for (int i = 0; i < listOfNumbersFromDt.Count; i++) {
                 LogicGates.Recognize(listOfNumbersFromDt[i]);
             }
-            
+
+            recognizedPostalValue.Text = "";
+            probablyPostalValue.Text = "";
+            string temp = "";
+            for (int i = 0; i < LogicGates.recognizedPostalNums.Count; i++) {
+                if (LogicGates.recognizedPostalNums[i] != -1 && LogicGates.recognizedPostalNums[i] < 10)
+                    temp = LogicGates.recognizedPostalNums[i].ToString();
+                else
+                    temp = "?";
+                recognizedPostalValue.Text += temp;
+                if (i == 1)
+                    recognizedPostalValue.Text += "-";
+            }
+
+            recognizedCodePanel.Visible = true;
+            LogicGates.recognizedPostalNums.Clear();
+            LogicGates.probablyPostalNums.Clear();
 
             int ij = 0;
 

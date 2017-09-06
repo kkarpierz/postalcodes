@@ -78,6 +78,12 @@ namespace CSharp_Neural_Network
                 }
             }
 
+            for (int i = 0; i < feedForwardResult.Length; i++) {
+                if (feedForwardResult[i] > 0.4 && feedForwardResult[i] <= 0.7) {
+                    return i*10;
+                }
+            }
+
             return -1; //wrong value
         }
 

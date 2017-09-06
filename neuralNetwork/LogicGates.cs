@@ -10,6 +10,9 @@ namespace CSharp_Neural_Network
     {
         static Network numberNetwork;
 
+        public static List<int> recognizedPostalNums = new List<int>();
+        public static List<int> probablyPostalNums = new List<int>();
+
         public static void Train()
         {
             var learnRate = 0.2;
@@ -61,7 +64,16 @@ namespace CSharp_Neural_Network
             }
 
             int numberRecognized = numberNetwork.RecognizeNumberFromVector(myNumberToTest);
-            Console.WriteLine(" ====   Recognized num: " + numberRecognized.ToString());
+            if (numberRecognized < 10) { //recognized with high probability
+                Console.WriteLine(" ====   Recognized num: " + numberRecognized.ToString());
+                recognizedPostalNums.Add(numberRecognized);
+                probablyPostalNums.Add(numberRecognized);
+            }
+            else {//recognized with lower probability
+                Console.WriteLine(" ====   Probably num: " + (numberRecognized/10).ToString());
+                recognizedPostalNums.Add(numberRecognized);
+                probablyPostalNums.Add(numberRecognized/10);
+            }
         }
 
         static void HL() { Console.WriteLine(new string('=', 0)); }

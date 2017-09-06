@@ -30,11 +30,17 @@
             this.FifthNumber = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.confirmButton = new System.Windows.Forms.Button();
+            this.recognizedCodePanel = new System.Windows.Forms.Panel();
+            this.recognizedPostal = new System.Windows.Forms.Label();
+            this.probablyPostal = new System.Windows.Forms.Label();
+            this.recognizedPostalValue = new System.Windows.Forms.Label();
+            this.probablyPostalValue = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.FirstNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SecondNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ThirdNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FourthNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FifthNumber)).BeginInit();
+            this.recognizedCodePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // FirstNumber
@@ -97,11 +103,58 @@
             this.confirmButton.UseVisualStyleBackColor = true;
             this.confirmButton.Click += new System.EventHandler(this.button1_Click);
             // 
+            // recognizedCodePanel
+            // 
+            this.recognizedCodePanel.Controls.Add(this.probablyPostalValue);
+            this.recognizedCodePanel.Controls.Add(this.recognizedPostalValue);
+            this.recognizedCodePanel.Controls.Add(this.probablyPostal);
+            this.recognizedCodePanel.Controls.Add(this.recognizedPostal);
+            this.recognizedCodePanel.Location = new System.Drawing.Point(211, 256);
+            this.recognizedCodePanel.Name = "recognizedCodePanel";
+            this.recognizedCodePanel.Size = new System.Drawing.Size(240, 69);
+            this.recognizedCodePanel.TabIndex = 7;
+            this.recognizedCodePanel.Visible = false;
+            // 
+            // recognizedPostal
+            // 
+            this.recognizedPostal.AutoSize = true;
+            this.recognizedPostal.Location = new System.Drawing.Point(15, 17);
+            this.recognizedPostal.Name = "recognizedPostal";
+            this.recognizedPostal.Size = new System.Drawing.Size(125, 13);
+            this.recognizedPostal.TabIndex = 0;
+            this.recognizedPostal.Text = "Recognized postal code:";
+            // 
+            // probablyPostal
+            // 
+            this.probablyPostal.AutoSize = true;
+            this.probablyPostal.Location = new System.Drawing.Point(31, 46);
+            this.probablyPostal.Name = "probablyPostal";
+            this.probablyPostal.Size = new System.Drawing.Size(109, 13);
+            this.probablyPostal.TabIndex = 1;
+            this.probablyPostal.Text = "Probably postal code:";
+            // 
+            // recognizedPostalValue
+            // 
+            this.recognizedPostalValue.AutoSize = true;
+            this.recognizedPostalValue.Location = new System.Drawing.Point(156, 17);
+            this.recognizedPostalValue.Name = "recognizedPostalValue";
+            this.recognizedPostalValue.Size = new System.Drawing.Size(0, 13);
+            this.recognizedPostalValue.TabIndex = 2;
+            // 
+            // probablyPostalValue
+            // 
+            this.probablyPostalValue.AutoSize = true;
+            this.probablyPostalValue.Location = new System.Drawing.Point(156, 46);
+            this.probablyPostalValue.Name = "probablyPostalValue";
+            this.probablyPostalValue.Size = new System.Drawing.Size(0, 13);
+            this.probablyPostalValue.TabIndex = 3;
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(949, 354);
+            this.Controls.Add(this.recognizedCodePanel);
             this.Controls.Add(this.confirmButton);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.FifthNumber);
@@ -116,6 +169,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.ThirdNumber)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.FourthNumber)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.FifthNumber)).EndInit();
+            this.recognizedCodePanel.ResumeLayout(false);
+            this.recognizedCodePanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -130,6 +185,11 @@
         private System.Windows.Forms.DataGridView FifthNumber;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button confirmButton;
+        private System.Windows.Forms.Panel recognizedCodePanel;
+        private System.Windows.Forms.Label probablyPostalValue;
+        private System.Windows.Forms.Label recognizedPostalValue;
+        private System.Windows.Forms.Label probablyPostal;
+        private System.Windows.Forms.Label recognizedPostal;
     }
 }
 
